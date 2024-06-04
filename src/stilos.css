@@ -50,9 +50,10 @@ margin-top: 80px;
 border-radius: 20px;
 display: flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content: space-between;
 overflow: auto;
 }
+
 
 .crearDiv{
 width: 90%;
@@ -79,7 +80,7 @@ margin-top: -30px;
 
 .spanStyle{
 margin-left: 98%;
-margin-top: -40px;
+margin-top: -2px;
 
 
 }
