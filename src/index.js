@@ -1,7 +1,9 @@
+import { guardarTarea } from "./main"
+
 let btn = document.getElementById("btnStyle")
 let contieneHijo = document.getElementById("container")
 let inputMostrar = document.getElementById("barra")
-
+let contador = document.getElementById("circuloContador")
 
 btn.addEventListener("click", function () {
     let crearDiv = document.createElement("h2")
@@ -21,7 +23,35 @@ btn.addEventListener("click", function () {
     span.textContent = "🗑"
     span.className = "spanStyle"
     crearDiv.appendChild(span)
+    guardarTarea(inputMostrar.value)
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// checkbox.addEventListener("click", function () {
+//     if (checkbox,checked) {
+//         contador.innerHTML = parseInt(contador.innerHTML)+1
+//     }
+// })
 
 
 
