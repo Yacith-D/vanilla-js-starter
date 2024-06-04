@@ -51,18 +51,38 @@ border-radius: 20px;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
-overflow: scroll;
+overflow: auto;
 }
 
-.contenedorAbajo > div{
+.crearDiv{
 width: 90%;
-height: 40px;
-background-color: blue;
+height: 60px;
+background-color: rgb(212, 212, 212);
 margin-left: 5%;
+margin-top: 1.5%;
+border:  solid 2px black;
+border-radius: 10px;
+}
+
+.check{
+width: 27px;
+height: 27px;
+margin-top: 15px;
+margin-left: 10px;
+}
+
+.parrafo{
+font-size: 27px;
+margin-left: 500px;
+margin-top: -30px;
+}
+
+.spanStyle{
+margin-left: 98%;
+margin-top: -40px;
 
 
 }
-
 
 
 
