@@ -1,14 +1,31 @@
-import { guardarTarea } from "./main.js"
+import { guardarTarea, mostrarTarea } from "./main.js"
+
 
 let btn = document.getElementById("btnStyle")
 let contieneHijo = document.getElementById("container")
 let inputMostrar = document.getElementById("barra")
 let contador = document.getElementById("circuloContador")
 
-btn.addEventListener("click", function () {
-    let crearDiv = document.createElement("h2")
+
+btn.addEventListener("click", async function () {
+    let tareas = await guardarTarea(inputMostrar.value)
+    console.log(tareas[tareas.length - 1]);
+  
+
+})
+
+listaTareas()
+
+
+async function listaTareas() {
+    let tareas = await mostrarTarea();
+    tareas.forEach(data => {
+        console.log(data.task);
+        console.log(data.id);
+        let crearDiv = document.createElement("h2")
     crearDiv.className = "crearDiv"
     contieneHijo.appendChild(crearDiv)
+
 
     let checkbox = document.createElement("input")
     checkbox.type = "checkbox"
@@ -17,13 +34,12 @@ btn.addEventListener("click", function () {
 
     let parrafo = document.createElement("p")
     parrafo.className = "parrafo"
-    crearDiv.appendChild(parrafo).innerHTML = inputMostrar.value;
+    crearDiv.appendChild(parrafo).innerHTML = data.task;
 
     let span = document.createElement("span")
     span.textContent = "🗑"
     span.className = "spanStyle"
     crearDiv.appendChild(span)
-    guardarTarea(inputMostrar.value)
 
 
     span.addEventListener("click", function () {
@@ -43,17 +59,9 @@ btn.addEventListener("click", function () {
             contador.innerHTML = parseInt(contador.innerHTML) - 1
         }
     })
+    });
 
-})
-
-
-
-
-
-
-
-
-
+}
 
 
 
