@@ -1,4 +1,4 @@
-import { guardarTarea } from "./main"
+import { guardarTarea } from "./main.js"
 
 let btn = document.getElementById("btnStyle")
 let contieneHijo = document.getElementById("container")
@@ -25,6 +25,25 @@ btn.addEventListener("click", function () {
     crearDiv.appendChild(span)
     guardarTarea(inputMostrar.value)
 
+
+    span.addEventListener("click", function () {
+        if (checkbox.checked) {
+            contieneHijo.removeChild(crearDiv);
+            contador.innerHTML = parseInt(contador.innerHTML) - 1
+            return task, checkbox
+        } else {
+            contieneHijo.removeChild(crearDiv);
+            return task, checkbox
+        }
+    })
+    checkbox.addEventListener("click", function () {
+        if (checkbox.checked) {
+            contador.innerHTML = parseInt(contador.innerHTML) + 1
+        } else {
+            contador.innerHTML = parseInt(contador.innerHTML) - 1
+        }
+    })
+
 })
 
 
@@ -41,17 +60,6 @@ btn.addEventListener("click", function () {
 
 
 
-
-
-
-
-
-
-// checkbox.addEventListener("click", function () {
-//     if (checkbox,checked) {
-//         contador.innerHTML = parseInt(contador.innerHTML)+1
-//     }
-// })
 
 
 
