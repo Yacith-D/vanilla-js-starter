@@ -13,6 +13,7 @@ const guardarTarea = async (tarea) => {
       })
     });
     const data = await response.json();
+    window.location.reload()
     return data
 
   } catch (error) {
@@ -20,9 +21,10 @@ const guardarTarea = async (tarea) => {
 
     console.log(error)
   }
+
 }
 
-export { guardarTarea,mostrarTarea }
+export { guardarTarea,mostrarTarea,actualizarTareas}
 
 
 
@@ -45,8 +47,29 @@ const mostrarTarea = async () => {
 }
 
 
+const actualizarTareas = async (tareaID,editarTarea) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/task'+ tareaID, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+
+        task: editarTarea
+      })
+    });
+    const data = await response.json();
+    window.location.reload()
+    return data
+
+  } catch (error) {
 
 
+    console.log(error)
+  }
+
+ }
 
 
 
