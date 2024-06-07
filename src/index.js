@@ -1,53 +1,67 @@
-import { guardarTarea, mostrarTarea,actualizarTareas, eliminarTarea } from "./main.js"
+import { guardarTarea, mostrarTarea, actualizarTareas, eliminarTarea } from "./main.js"
 
 
 let btn = document.getElementById("btnStyle")
 let contieneHijo = document.getElementById("container")
 let inputMostrar = document.getElementById("barra")
 let contador = document.getElementById("circuloContador")
+let editTask = document.querySelector(".editTask")
 // let contenedorPadre = document.getElementById("contenedorAbajo")
-
-
 btn.addEventListener("click", async function () {
+    mostrarTarea()
     if (inputMostrar.value.trim() === '') {
         alert('ingresa texto')
     } else {
         let tareas = await guardarTarea(inputMostrar.value)
         console.log(tareas[tareas.length - 1]);
     }
-
-
 })
 
 listaTareas()
-// actualizarTareas()
+actualizarTareas()
 
 async function listaTareas() {
     let tareas = await mostrarTarea();
     tareas.forEach(data => {
-        let crearDiv = document.createElement("h2")
+        let crearDiv = document.createElement("div")
         crearDiv.className = "crearDiv"
         contieneHijo.appendChild(crearDiv)
-        .id = data.id
 
+        if (tareas.length <= 0) {
+            editTask.style.display = "block"
+        }
+        else if (tareas.length > 0) {
+            editTask.style.display = "none"
+        }
+
+        let boton = document.createElement("button")
+        boton.id = "botonn"
+        boton.textContent = "edit"
+
+
+        boton.addEventListener("click", () => {
+            let modal = document.getElementById("abrirModal")
+            modal.show()
+        })
 
         let checkbox = document.createElement("input")
         checkbox.type = "checkbox"
         checkbox.className = "check"
-        crearDiv.appendChild(checkbox)
+
 
         let parrafo = document.createElement("p")
         parrafo.className = "parrafo"
-        crearDiv.appendChild(parrafo).innerHTML = data.task;
+
+
 
         let span = document.createElement("span")
         span.textContent = "🗑"
         span.className = "spanStyle"
-        crearDiv.appendChild(span)
 
-        let inputEditar = document.createElement("input") 
-        inputEditar.className = "styleInput"
-        parrafo.appendChild(inputEditar)
+        crearDiv.appendChild(checkbox)
+        crearDiv.appendChild(parrafo).innerHTML = data.task;
+        crearDiv.appendChild(boton)
+        crearDiv.appendChild(span)
 
         span.addEventListener("click", function () {
             if (checkbox.checked) {
@@ -66,17 +80,12 @@ async function listaTareas() {
             }
         })
     });
+
 }
 
-inputMostrar.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    document.getElementById("btnStyle").click();
-  }
+inputMostrar.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        document.getElementById("btnStyle").click();
+    }
 });
-
-
-
-
-
-
 

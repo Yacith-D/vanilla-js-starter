@@ -22,6 +22,17 @@
 
 	<div class="contenedorAbajo">
 		<div id="container"></div>
+
+		<div class="editTask">
+			<p id="editarTarea">no hay tareas</p>
+		</div>
+
+		<dialog id="abrirModal">
+            <p>Editar tarea</p>
+            <input type="text" id="inputModal">
+            <button onclick=this.parentElement.close()>Cerrar</button>
+            <button id="cambiar">Editar</button>
+        </dialog>
 	</div>
 
 

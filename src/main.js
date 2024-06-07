@@ -35,8 +35,8 @@ const mostrarTarea = async () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      },
-    });
+      }
+    })
     const data = await response.json();
     return data
 
@@ -47,10 +47,9 @@ const mostrarTarea = async () => {
   }
 }
 
-
 const actualizarTareas = async (tareaID, editarTarea) => {
   try {
-    const response = await fetch('http://localhost:3000/api/task' + tareaID, {
+    const response = await fetch('http://localhost:3000/api/task/' + tareaID, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +60,7 @@ const actualizarTareas = async (tareaID, editarTarea) => {
       })
     });
     const data = await response.json();
-    window.location.reload()
+
     return data
 
   } catch (error) {
@@ -80,7 +79,9 @@ async function eliminarTarea(id) {
     mostrarTarea();
   } else {
     console.error('Error deleting task:', response.statusText);
+
   }
+  window.location.reload()
 }
 
 
