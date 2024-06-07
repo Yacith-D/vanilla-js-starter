@@ -1,4 +1,4 @@
-import { guardarTarea, mostrarTarea,actualizarTareas } from "./main.js"
+import { guardarTarea, mostrarTarea,actualizarTareas, eliminarTarea } from "./main.js"
 
 
 let btn = document.getElementById("btnStyle")
@@ -9,8 +9,12 @@ let contador = document.getElementById("circuloContador")
 
 
 btn.addEventListener("click", async function () {
-    let tareas = await guardarTarea(inputMostrar.value)
-    console.log(tareas[tareas.length - 1]);
+    if (inputMostrar.value.trim() === '') {
+        alert('ingresa texto')
+    } else {
+        let tareas = await guardarTarea(inputMostrar.value)
+        console.log(tareas[tareas.length - 1]);
+    }
 
 
 })
@@ -19,14 +23,8 @@ listaTareas()
 // actualizarTareas()
 
 async function listaTareas() {
-    // if (inputMostrar.value.trim() === "") {
-    //     alert("jebe")
-    //     return
-    // }
     let tareas = await mostrarTarea();
     tareas.forEach(data => {
-        console.log(data.task);
-        console.log(data.id);
         let crearDiv = document.createElement("h2")
         crearDiv.className = "crearDiv"
         contieneHijo.appendChild(crearDiv)
@@ -47,19 +45,18 @@ async function listaTareas() {
         span.className = "spanStyle"
         crearDiv.appendChild(span)
 
-        let btnEditar = document.createElement("input") 
-        // btnEditar.className = "styleBtn"
-        parrafo.appendChild(btnEditar)
+        let inputEditar = document.createElement("input") 
+        inputEditar.className = "styleInput"
+        parrafo.appendChild(inputEditar)
 
         span.addEventListener("click", function () {
             if (checkbox.checked) {
                 contieneHijo.removeChild(crearDiv);
                 contador.innerHTML = parseInt(contador.innerHTML) - 1
-                return task, checkbox
             } else {
                 contieneHijo.removeChild(crearDiv);
-                return task, checkbox
             }
+            eliminarTarea(data.id)
         })
         checkbox.addEventListener("click", function () {
             if (checkbox.checked) {
@@ -71,7 +68,11 @@ async function listaTareas() {
     });
 }
 
-
+inputMostrar.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    document.getElementById("btnStyle").click();
+  }
+});
 
 
 

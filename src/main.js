@@ -1,3 +1,4 @@
+import { kill } from "process";
 
 const guardarTarea = async (tarea) => {
   try {
@@ -24,7 +25,7 @@ const guardarTarea = async (tarea) => {
 
 }
 
-export { guardarTarea,mostrarTarea,actualizarTareas}
+export { guardarTarea, mostrarTarea, actualizarTareas, eliminarTarea }
 
 
 
@@ -47,9 +48,9 @@ const mostrarTarea = async () => {
 }
 
 
-const actualizarTareas = async (tareaID,editarTarea) => {
+const actualizarTareas = async (tareaID, editarTarea) => {
   try {
-    const response = await fetch('http://localhost:3000/api/task'+ tareaID, {
+    const response = await fetch('http://localhost:3000/api/task' + tareaID, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -69,13 +70,18 @@ const actualizarTareas = async (tareaID,editarTarea) => {
     console.log(error)
   }
 
- }
+}
 
-
-
-
-
-
+async function eliminarTarea(id) {
+  const response = await fetch('http://localhost:3000/api/task/' + id, {
+    method: 'DELETE',
+  });
+  if (response.ok) {
+    mostrarTarea();
+  } else {
+    console.error('Error deleting task:', response.statusText);
+  }
+}
 
 
 
