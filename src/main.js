@@ -1,5 +1,5 @@
 import { kill } from "process";
-
+//metodo para guardar informacion
 const guardarTarea = async (tarea) => {
   try {
     const response = await fetch('http://localhost:3000/api/task', {
@@ -24,11 +24,11 @@ const guardarTarea = async (tarea) => {
   }
 
 }
-
+//aqui se exporta el index.js para llamar las funciones ahi
 export { guardarTarea, mostrarTarea, actualizarTareas, eliminarTarea }
 
 
-
+//metodo para mostrar la informacion
 const mostrarTarea = async () => {
   try {
     const response = await fetch('http://localhost:3000/api/task', {
@@ -46,7 +46,7 @@ const mostrarTarea = async () => {
     console.log(error)
   }
 }
-
+//metodo para actualizar a informacion
 const actualizarTareas = async (tareaID, editarTarea) => {
   try {
     const response = await fetch('http://localhost:3000/api/task/' + tareaID, {
@@ -70,7 +70,7 @@ const actualizarTareas = async (tareaID, editarTarea) => {
   }
 
 }
-
+//metodo para eliminar la informacion
 async function eliminarTarea(id) {
   const response = await fetch('http://localhost:3000/api/task/' + id, {
     method: 'DELETE',
