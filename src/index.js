@@ -73,7 +73,7 @@ async function listaTareas() {
             }
             eliminarTarea(data.id)
         })
-        checkbox.addEventListener("click", function () {
+        checkbox.addEventListener("click", function () {//al darle el check hace que disminuya el contador
             if (checkbox.checked) {
                 contador.innerHTML = parseInt(contador.innerHTML) + 1
             } else {
@@ -84,7 +84,7 @@ async function listaTareas() {
 
 }
 
-inputMostrar.addEventListener("keypress", function (event) {
+inputMostrar.addEventListener("keypress", function (event) {//evento para darle al boton enter y se mande el texto
     if (event.key === "Enter") {
         document.getElementById("btnStyle").click();
     }
